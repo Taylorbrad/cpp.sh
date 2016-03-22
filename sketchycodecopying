@@ -1,0 +1,164 @@
+// First Order Group Project
+// Business Planner
+// Created by Mike, Tanner, Rurik, and Logan
+
+/*
+MANY LINES OF CODE COPIED FROM GITHUB.COM/JABUTZEN 
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+using namespace std;
+
+// Function prototypes
+void enterOption();
+void displayOption();
+void searchDay();
+int main() {
+	
+  	//declare variable
+  	int menuOption = 0;
+  	int exitVar = 1;
+
+	//begin loop
+	do {
+		//display menu and get option
+		cout << endl;
+		cout << "1 Enter item in planner" << endl;
+		cout << "2 View full planner" << endl;
+		cout << "3 Search item by date (MM/DD/YYYY)" << endl;
+		cout << "4 End Program" << endl;
+		cout << "Enter menu option: ";
+		cin >> menuOption;
+		cout << endl;
+		//clears the buffer so getline() can be used
+		cin.ignore();
+		
+		//Call the menuoption functions.
+		//Switch Statement to Choose How to Proceed
+		
+		switch (menuOption){
+			case 1:
+				enterOption();
+				break;
+			case 2:
+				displayOption();
+				break;
+			case 3:
+				searchDay();
+				break;
+			case 4:
+				exitVar = 0;
+				break;
+			default:
+				cout << "Incorrect Opption" << endl;
+				break;
+		}	//end switch
+//Start While loop
+	} while (exitVar != 0); //end do while loop
+	
+	return 0;
+} //End Main
+//Function Definitions
+void enterOption(){
+	//declare strings
+	string eventDate = "";
+	string eventName = "";
+	string eventNotes = "";
+	
+	fstream eventAdd;
+	//gets the date
+	cout << "Enter a new event's date (MM/DD/YYYY) (enter -1 to exit):";
+	getline(cin, eventDate);
+	
+	while(eventDate != "-1"){
+		//gets title to event
+		cout << "Enter the title of the event :";
+		getline(cin, eventName);
+		//gets any notes about event
+		cout << "Enter any notes about the event :";
+		getline(cin, eventNotes);
+		
+		eventAdd.open("Calendar.txt", ios::app);//open file for information to be appended
+		//tests to see if the file opened correctly
+		if (eventAdd.is_open()){
+			//if no notes were added this adds no notes to the file
+			if(eventNotes == ""){
+				eventNotes = "No Notes";
+			}
+			//appends the information to the next line in the text document
+			//information is separated by #
+			eventAdd << eventDate << " | " << eventName << " | " << eventNotes << '\n';
+		} else {
+			cout << endl << "File did not open correctly." << endl;
+		}
+		eventAdd.close(); //close file
+		
+		cout << "Enter a new event's date (MM/DD/YYYY) (enter -1 to exit):";
+		getline(cin, eventDate);
+	}
+}//end enterOption
+
+void displayOption(){
+	string date = "";
+	string title = "";
+	string notes = "";
+
+	ifstream displayAll;
+
+	displayAll.open("Calendar.txt", ios::in);//open the file
+	//test to see if the file opened succesfuly
+	if(displayAll.is_open()){
+		//get the date
+		getline(displayAll >> ws, date, '|');	
+		//get the title
+		getline(displayAll >> ws, title, '|');
+		//get the notes
+		getline(displayAll >> ws, notes);
+		//run as long as it is not at the end of the file
+		while (!displayAll.eof()) {
+			//display the enteries
+			cout << date << '\n'<< "     " << title << '\n' << "     " << notes << '\n' << '\n';
+			getline(displayAll >> ws, date, '|');	
+			getline(displayAll >> ws, title, '|');
+			getline(displayAll >> ws, notes);
+		}
+	} 
+	else {
+		cout << "Error Reading File";
+	}
+	displayAll.close();//close the file
+		cout << "Press enter to continue";//pause before proceding
+		getline(cin, date);
+}//end displayOption
+
+void searchDay(){
+	//declare string variables
+		string sDate = "";
+		string line = "";
+		string nLine = "";
+
+		//user enters date they want to search
+		//the month, day, and year needs to be entered (MM/DD/YYYY)
+		cout << "Enter date to search (MM/DD/YYYY): ";
+		cin >> sDate;
+		cout << endl;
+		cout << "***** Services recommended for " + sDate + " *****" << endl << endl;
+		//create search object
+		ifstream searchDay;
+		//open Calender.txt to search
+		searchDay.open("Calendar.txt", ios::in);
+		//while not at the end of file
+		while(std::getline(searchDay, line)) {
+			//if statement searches file for specific date
+			//then displays the lines featuring that date
+			if (line.find(sDate) != string::npos)
+				//display line from text file
+				cout << line << endl << endl;
+			//end if
+		} //end while
+		//close file
+		searchDay.close();
+}//end searchDay
