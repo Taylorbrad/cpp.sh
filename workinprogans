@@ -68,6 +68,7 @@ void customerTransaction()
 	//initialize variables
 	ifstream searchForCart;
 	double cartTotal[50];
+	double runningTotal = 0;
 	int itemNum = 0;
 	string productName;
 	string idNum;
@@ -77,33 +78,42 @@ void customerTransaction()
 	
 	for (int x = 0; x < 50 || x != 0; ++x)
 	{
-		cout << "Enter product name to add to cart (enter 0 to finalize cart): ";
+		cout << "Enter product name to add to cart (enter STOP to finalize cart): ";
+		
+		if (x == 0)
 		cin.ignore();
+		
 		getline(cin, productToAdd);
 		
 		searchForCart.open("products.txt", ios::in);
-		cout << debugLine << "b4ifisopen\n";
+		//cout << debugLine << "b4ifisopen\n";
 		if (searchForCart.is_open())
 		{
-			cout << debugLine << "b4while !search...\n";
+			int testForProduct = 0;
+			//cout << debugLine << "b4while !search...\n";
 			while(!searchForCart.eof())
 			{
-				cout << debugLine << "b4getlines\n";
+				//cout << debugLine << "b4getlines\n";
 				getline(searchForCart, productName, ',');
 				getline(searchForCart, idNum, ',');
 				getline(searchForCart, price);
 				
-				cout << productName << "  " << productToAdd;
+				//cout << productName << "  /" << productToAdd << "/";
 				if (productName == productToAdd)
 				{
-					cout << debugLine << "if add price\n";
+					//cout << debugLine << "if add price\n";
 					cartTotal[itemNum] = stod(price);
-					cout << cartTotal[itemNum] << "..." << stod(price);
+					//cout << cartTotal[itemNum] << "..." << stod(price);
 					++itemNum;
+					++testForProduct;
+					runningTotal += stod(price);
+					cout << "The running total is: $" << runningTotal << "\n";
 				}
 				
 			}
-		cout << debugLine << "after is open\n"; 
+			if (testForProduct == 0 && productToAdd != "STOP")
+				cout << "\nNo product matched this name.\nRemember it is case-sensitive\n\n";
+		//cout << debugLine << "after is open\n"; 
 		
 		}
 	
@@ -117,15 +127,21 @@ void customerTransaction()
 			cout << noProductError;
 		}*/
 		int tempLineNum = itemNum - 1;
-		cout << cartTotal[tempLineNum] << "..." << stod(price);
+		//cout << cartTotal[tempLineNum] << "..." << stod(price);
 		searchForCart.close();
+		//cout << "\n\n" << productToAdd;
+		if (productToAdd == "STOP")
+		{
+			double totalOrder;
+			for(int y = 0; y < itemNum; ++y)
+			{
+				//cout << cartTotal[y] << "\n\n";
+				totalOrder += cartTotal[y];
+			}
+			cout << "\nThe total order is: $" << totalOrder << "\n\n";
+			main();
+		}
 	}
-	int totalOrder;
-	for(int y = 0; y < sizeof(cartTotal); ++y)
-	{
-		totalOrder += cartTotal[y];
-	}
-	cout << "\nThe total order is: $" << totalOrder << "\n\n";
 }
 void addNewProduct()
 {
@@ -200,7 +216,7 @@ void searchProduct() //Function
 			if (productName == searchString)
 			{
 				++itemNum;
-				productProperties = "Name: " + productName + ", ID Number:" + idNum + ", Price: $" + price + "\n";
+				productProperties = "Name: " + productName + ", ID Number: #" + idNum + ", Price: $" + price + "\n";
 				cout << itemNum << ": " << productProperties;
 			}
 		}
