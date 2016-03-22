@@ -112,7 +112,7 @@ void customerTransaction()
 				
 			}
 			if (testForProduct == 0 && productToAdd != "STOP")
-				cout << "\nNo product matched this name.\nRemember it is case-sensitive\n\n";
+				cout << "------------------------------------\nNo product matched this name.\nRemember it is case-sensitive\n------------------------------------\n";
 		//cout << debugLine << "after is open\n"; 
 		
 		}
