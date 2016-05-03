@@ -1,7 +1,6 @@
 #current
 
-http://cpp.sh/5bo23 (object creation)
-
+http://cpp.sh/5bo23 (object creation) \n
 http://cpp.sh/4she (simple 4 operation calculator)
 http://cpp.sh/8kqj (test scores 11-24)
 http://cpp.sh/36rq (slope field values, (-3 -- 3))
