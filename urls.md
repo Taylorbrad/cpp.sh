@@ -1,4 +1,4 @@
-#current
+#Current
 
 http://cpp.sh/5bo23 (object creation)  
 http://cpp.sh/4she (simple 4 operation calculator)  
