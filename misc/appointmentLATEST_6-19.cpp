@@ -5,9 +5,10 @@
 using namespace std;
 
 void initializeTxtFile();
-void displayAppointment1();
+void displayAppointment();
 void deleteAll();
 void setAppointment();
+void displayStuff(string[], int);
 string getPassKey();
 class NewAppointment
 {
@@ -55,7 +56,7 @@ int main()
 		case 1: setAppointment();
 			break;
 			
-		case 2: displayAppointment1();
+		case 2: displayAppointment();
 			break;
 			
 		case 3: deleteAll();
@@ -86,15 +87,13 @@ void setAppointment()
 	}
 	writeToFile.close();
 }
-void displayAppointment1()
+void displayAppointment()
 {	
 	int appTime = 0;
 	string currentMonth = "";
 	string currentYear = "";
 	string currentDay = "";
 	string selection[3] = {"", "", ""};
-	int x = 0;
-	int y = 0;
 	
 	
 	//getline(cin, appointment);
@@ -125,15 +124,13 @@ void displayAppointment1()
 			
 			break;
 	}
-	
+	displayStuff(selection, appTime);
 	
 		
 	//endif
-	else {
-		cout << "The file could not be opened at this time. Please try again." << endl;
-	}
+	
 }
-void displayStuff(string selection[], int sub)
+void displayStuff(string *selection, int sub)
 {
 	string appointment = "";
 	string month = "";
@@ -168,17 +165,10 @@ void displayStuff(string selection[], int sub)
 			}
 			++x;
 		}
-}
-void displayAppointment2()
-{
-	ifstream readFile;
-	readFile.open("appointments.txt", ios::in);
-	if (readFile.is_open())
+	}
+	else 
 	{
-		while (!readFile.eof())
-		{
-			//getline ()
-		}
+		cout << "The file could not be opened at this time. Please try again." << endl;
 	}
 }
 
