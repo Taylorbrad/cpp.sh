@@ -89,13 +89,15 @@ void setAppointment()
 void displayAppointment1()
 {	
 	int appTime = 0;
-	
+	string currentMonth = "";
+	string currentYear = "";
+	string currentDay = "";
 	string selection[3] = {"", "", ""};
 	int x = 0;
 	int y = 0;
 	
 	
-	getline(cin, appointment);
+	//getline(cin, appointment);
 	cout << "Which appointments would you like to view?\n(1) Day  \n(2) Month  \n(3) Year  \n(4) All appointments" << endl;
 	cin >> appTime;
 	
@@ -135,11 +137,11 @@ void displayStuff(string selection[], int sub)
 {
 	string appointment = "";
 	string month = "";
-	string currentMonth = "";
+	
 	string year = "";
-	string currentYear = "";
+	
 	string day = "";
-	string currentDay = "";
+	
 	string hour = "";
 	string minute = "";
 	string amOrPm = "";
