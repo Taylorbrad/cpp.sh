@@ -104,19 +104,24 @@ void displayAppointment()
 	{
 		case 1:
 			cout << "Enter todays date (DD): ";
-			cin >> currentDay;
+			cin.ignore();
+			getline(cin, currentDay);
 			selection[appTime] = currentDay;
+			cout << "current day is: " << selection[appTime] << "\n";
 			break;
 		case 2:
 			cout << "Enter the current month (MM): ";
-			cin >> currentMonth;
+			cin.ignore();
+			getline(cin, currentMonth);
 			selection[appTime] = currentMonth;
+			cout << "current month is: " << selection[appTime] << "\n";
 			break;
 		case 3:
 			cout << "Enter the current year (YYYY): ";
 			cin.ignore();
 			getline(cin, currentYear);
 			selection[appTime] = currentYear;
+			cout << "current year is: " << selection[appTime] << "\n";
 			break;
 		case 4:
 			
@@ -125,6 +130,7 @@ void displayAppointment()
 			
 			break;
 	}
+	cout << "Params: 1: " << selection << " 2: " << appTime;
 	displayStuff(selection, appTime);
 	
 		
@@ -160,10 +166,14 @@ void displayStuff(string *selection, int sub)
 			getline(display, amOrPm, '[');
 			getline(display, appointment, ']');
 			string select[3] = {day, month, year};
-			cout << selection[sub] << " || " << select[sub];
+			cout << "1: " << selection[sub] << " || " << "2: " << select[sub];
 			if (selection[sub] == select[sub])
 			{
-				cout << /* output appointment instructions*/ "Appointment #" << x;
+				cout << "Appointment #" << x << " Is on " << month << "/" << day << "/" << year << " at " << hour << ":" << minute << ". The reason for this visit is: " << appointment;
+			}
+			else if (sub == 4)
+			{
+				cout << "Appointment #" << x << " Is on " << month << "/" << day << "/" << year << " at " << hour << ":" << minute << ". The reason for this visit is: " << appointment;
 			}
 			++x;
 		}
