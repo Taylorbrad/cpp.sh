@@ -130,7 +130,7 @@ void displayAppointment()
 			
 			break;
 	}
-	cout << "Params: 1: " << selection << " 2: " << appTime;
+	cout << "Params: 1: " << selection[appTime] << " 2: " << appTime;
 	displayStuff(selection, appTime);
 	
 		
@@ -154,10 +154,10 @@ void displayStuff(string *selection, int sub)
 	
 	display.open("appointments.txt");
 	//if: checking if file is open
-	if (display.is_open())
-	{
-		while (!display.eof())
-		{
+	//if (display.is_open())
+	//{
+		//while (!display.eof())
+		//{
 			getline(display, month, '/');
 			getline(display, day, '/');
 			getline(display, year, ' ');
@@ -176,12 +176,12 @@ void displayStuff(string *selection, int sub)
 				cout << "Appointment #" << x << " Is on " << month << "/" << day << "/" << year << " at " << hour << ":" << minute << ". The reason for this visit is: " << appointment;
 			}
 			++x;
-		}
-	}
-	else 
-	{
-		cout << "The file could not be opened at this time. Please try again." << endl;
-	}
+		//}
+	//}
+	//else 
+	//{
+	//	cout << "The file could not be opened at this time. Please try again." << endl;
+	//}
 }
 
 //function to initialize text file if it is the first time the program is run
