@@ -1,5 +1,6 @@
 #Current
 http://cpp.sh/6p72 (removing element from vector int)
+
 http://cpp.sh/3mdvf (removing element from vector string)
 
 http://cpp.sh/5bo23 (object creation)  
