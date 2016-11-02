@@ -1,7 +1,6 @@
 #Current
-http://cpp.sh/6p72 (removing element from vector int)
-
-http://cpp.sh/3mdvf (removing element from vector string)
+http://cpp.sh/6p72 (removing element from vector int)    
+http://cpp.sh/3mdvf (removing element from vector string)    
 http://cpp.sh/5bo23 (object creation)  
 http://cpp.sh/4she (simple 4 operation calculator)  
 http://cpp.sh/36rq (slope field values, (-3 -- 3))  
