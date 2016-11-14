@@ -1,5 +1,5 @@
 #Current
-http://cpp.sh/67fbw (convert string # to double #)
+http://cpp.sh/67fbw (convert string # to double #) 
 http://cpp.sh/6p72 (removing element (by value) from vector int)    
 http://cpp.sh/2icoa (removing element from vector (by content) for string)     
 http://cpp.sh/3mdvf (removing element from vector string)    
